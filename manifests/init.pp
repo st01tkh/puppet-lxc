@@ -1,6 +1,6 @@
 # == Class: vagrant_lxc
 #
-Setup of vagrant, vagrant-lxc plugin, lxc and appropriate dependencies
+# Setup of vagrant, vagrant-lxc plugin, lxc and appropriate dependencies
 #
 # === Parameters
 #
