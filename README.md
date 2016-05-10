@@ -15,7 +15,8 @@
 
 ## Overview
 
-This puppet module sets up latest vagrant, vagrant-lxc plugin, lxc and appropriate dependencies
+This puppet module prepares host to use vagrant-lxc plugin (https://github.com/fgrehm/vagrant-lxc)
+It sets up latest vagrant, vagrant-lxc plugin, lxc and appropriate dependencies
 
 ## Module Description
 
