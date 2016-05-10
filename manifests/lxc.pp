@@ -7,4 +7,8 @@ class vagrant_lxc::lxc {
   package { $packages :
     ensure => installed,
   }
+
+  file { "/etc/profile.d/vagrant_default_provider.sh":
+    content => 'export VAGRANT_DEFAULT_PROVIDER="lxc"'
+  }
 }

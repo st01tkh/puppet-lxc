@@ -6,7 +6,14 @@ define vagrant_lxc::vagrant(
   if ($::kernel != 'linux') {
     fail("Sorry, LXC is linux only technology")
   }
-  class {'vagrant': } ->
+
+  $boxes = [
+    'fgrehm/trusty64-lxc', 'fgrehm/precise64-lxc', 'fgrehm/wheezy64-lxc', 
+    'fgrehm/centos-6-64-lxc', 'frensjan/centos-7-64-lxc', 'obnox/fedora23-64-lxc'
+  ]
+
+
+  class {'vagrant': }
   user { "$user":
     ensure => present,
   } ->
@@ -14,7 +21,7 @@ define vagrant_lxc::vagrant(
     user => $user,
     plugin_version => $plugin_version
   } ->
-  vagrant::box {'fgrehm/trusty64-lxc':
+  vagrant::box { 'fgrehm/trusty64-lxc':
     box_provider => 'lxc',
     user         => $user,
   }
