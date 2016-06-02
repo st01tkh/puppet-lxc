@@ -14,8 +14,10 @@ define vagrant_lxc::vagrant(
 
 
   class {'vagrant': }
-  user { "$user":
-    ensure => present,
+  if ! defined(User["$user"]) {
+    user { "$user":
+      ensure => present,
+    }
   } ->
   vagrant::plugin {'vagrant-lxc':
     user => $user,
