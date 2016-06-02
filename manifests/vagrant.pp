@@ -17,8 +17,9 @@ define vagrant_lxc::vagrant(
   if ! defined(User["$user"]) {
     user { "$user":
       ensure => present,
+      before => Vagrant::Plugin['vagrant-lxc'],
     }
-  } ->
+  }
   vagrant::plugin {'vagrant-lxc':
     user => $user,
     plugin_version => $plugin_version
