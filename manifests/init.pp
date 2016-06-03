@@ -1,4 +1,4 @@
-# == Class: vagrant_lxc
+# == Define: vagrant_lxc
 #
 # Setup of vagrant, vagrant-lxc plugin, lxc and appropriate dependencies
 #
@@ -8,8 +8,8 @@
 #
 # === Examples
 #
-#  class { 'vagrant_lxc':
-#    plugin_user => [ 'root', 'user01', 'user02' ],
+#  vagrant_lxc {
+#    user => [ 'root', 'user01', 'user02' ],
 #  }
 #
 # === Authors
@@ -20,5 +20,12 @@
 #
 # Copyright 2016 st01tkh
 #
-class vagrant_lxc {
+define vagrant_lxc(
+  $user           = $::id,
+  $plugin_version = undef
+) {
+  include vagrant_lxc::lxc
+  vagrant_lxc::vagrant {'install_vagrant_lxc_and_boxes':
+    user => $user,
+  }
 }
