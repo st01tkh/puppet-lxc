@@ -1,6 +1,6 @@
 {
   "name": "tkh-vagrant_lxc",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "st01tkh",
   "summary": "Setup host to run lxc via vagrant",
   "license": "Apache 2.0",
@@ -9,7 +9,7 @@
   "issues_url": "https://github.com/st01tkh/puppet-vagrant_lxc/issues",
   "dependencies": [
     {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"},
-    {"name":"tkh-vagrant","version_requirement":">= 0.1.1"}
+    {"name":"tkh-vagrant","version_requirement":">= 0.1.2"}
   ]
 }
 
