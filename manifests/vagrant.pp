@@ -8,8 +8,7 @@ define vagrant_lxc::vagrant(
   }
 
   $boxes = [
-    'fgrehm/trusty64-lxc', 'fgrehm/precise64-lxc', 'fgrehm/wheezy64-lxc', 
-    'fgrehm/centos-6-64-lxc', 'frensjan/centos-7-64-lxc', 'obnox/fedora23-64-lxc'
+    'st01tkh/xenial64-lxc', 'st01tkh/jessie64-lxc', 'fgrehm/centos7-64-lxc',
   ]
 
 
