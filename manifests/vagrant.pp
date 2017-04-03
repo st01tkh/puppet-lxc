@@ -23,7 +23,15 @@ define vagrant_lxc::vagrant(
     user => $user,
     plugin_version => $plugin_version
   } ->
-  vagrant::box { 'fgrehm/trusty64-lxc':
+  vagrant::box { 'st01tkh/xenial64-lxc':
+    box_provider => 'lxc',
+    user         => $user,
+  } ->
+  vagrant::box { 'st01tkh/jessie64-lxc':
+    box_provider => 'lxc',
+    user         => $user,
+  } ->
+  vagrant::box { 'st01tkh/centos7-64-lxc':
     box_provider => 'lxc',
     user         => $user,
   }
