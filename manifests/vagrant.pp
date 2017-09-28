@@ -22,10 +22,12 @@ define vagrant_lxc::vagrant(
   }
 
   $import_boxes.each |String $import_box| {
-    vagrant::box { $import_box:
-      box_provider => 'lxc',
-      user         => $user,
-      require => Vagrant::Plugin['vagrant-lxc'],
+    if !defined(Vagrant::Box[$import_box]) {
+      vagrant::box { $import_box:
+        box_provider => 'lxc',
+        user         => $user,
+        require => Vagrant::Plugin['vagrant-lxc'],
+      }
     }
   }
 }
