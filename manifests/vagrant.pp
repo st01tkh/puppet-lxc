@@ -1,38 +1,31 @@
 define vagrant_lxc::vagrant(
   $user           = $::id,
-  $plugin_version = undef
+  $plugin_version = undef,
+  $import_boxes = ['st01tkh/xenial64-lxc', 'st01tkh/stretch64-lxc', 'st01tkh/centos7-64-lxc'],
 )
 {
   if ($::kernel != 'linux') {
     fail("Sorry, LXC is linux only technology")
   }
 
-  $boxes = [
-    'st01tkh/xenial64-lxc', 'st01tkh/jessie64-lxc', 'fgrehm/centos7-64-lxc',
-  ]
-
-
   class {'vagrant': }
-  if ! defined(User["$user"]) {
+  if !defined(User["$user"]) {
     user { "$user":
       ensure => present,
       before => Vagrant::Plugin['vagrant-lxc'],
     }
   }
+
   vagrant::plugin {'vagrant-lxc':
     user => $user,
     plugin_version => $plugin_version
-  } ->
-  vagrant::box { 'st01tkh/xenial64-lxc':
-    box_provider => 'lxc',
-    user         => $user,
-  } ->
-  vagrant::box { 'st01tkh/jessie64-lxc':
-    box_provider => 'lxc',
-    user         => $user,
-  } ->
-  vagrant::box { 'st01tkh/centos7-64-lxc':
-    box_provider => 'lxc',
-    user         => $user,
+  }
+
+  $import_boxes.each |String $import_box| {
+    vagrant::box { $import_box:
+      box_provider => 'lxc',
+      user         => $user,
+      require => Vagrant::Plugin['vagrant-lxc'],
+    }
   }
 }

@@ -22,10 +22,12 @@
 #
 define vagrant_lxc(
   $user           = $::id,
-  $plugin_version = undef
+  $plugin_version = undef,
+  $import_boxes = [],
 ) {
   include vagrant_lxc::lxc
   vagrant_lxc::vagrant {'install_vagrant_lxc_and_boxes':
+    import_boxes => $import_boxes,
     user => $user,
   }
 }
