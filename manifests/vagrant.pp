@@ -8,7 +8,9 @@ define vagrant_lxc::vagrant(
     fail("Sorry, LXC is linux only technology")
   }
 
-  class {'vagrant': }
+  if !defined(Class['vagrant']) {
+    class {'vagrant': }
+  }
   if !defined(User["$user"]) {
     user { "$user":
       ensure => present,
