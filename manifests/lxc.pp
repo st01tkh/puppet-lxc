@@ -4,9 +4,9 @@ class vagrant_lxc::lxc {
   }
   
   $packages = ['lxc', 'lxc-templates', 'cgroup-lite', 'redir']
-  package { $packages :
-    ensure => installed,
-  }
+  ensure_packages($packages, {
+    'ensure' => 'present'
+  })
 
   file { "/etc/profile.d/vagrant_default_provider.sh":
     content => 'export VAGRANT_DEFAULT_PROVIDER="lxc"'
