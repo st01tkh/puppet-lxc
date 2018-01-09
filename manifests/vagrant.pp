@@ -20,6 +20,7 @@ define vagrant_lxc::vagrant(
 
   vagrant::plugin {"vagrant-lxc-$user":
     user => $user,
+    plugin_name => 'vagrant-lxc',
     plugin_version => $plugin_version
   }
 
