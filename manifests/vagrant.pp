@@ -28,7 +28,7 @@ define vagrant_lxc::vagrant(
       vagrant::box { $import_box:
         box_provider => 'lxc',
         user         => $user,
-        require => Vagrant::Plugin['vagrant-lxc'],
+        require => Vagrant::Plugin["vagrant-lxc-$user"],
       }
     }
   }
