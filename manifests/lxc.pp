@@ -3,7 +3,18 @@ class vagrant_lxc::lxc {
     fail("Sorry, LXC is linux only technology")
   }
   
-  $packages = ['lxc', 'lxc-templates', 'cgroup-lite', 'redir']
+  $dist_family = downcase($::operatingsystem)
+  case $dist_family {
+    'ubuntu': {
+      $packages = ['lxc', 'lxc-templates', 'cgroup-lite', 'redir']
+    }
+    'debian': {
+      $packages = ['lxc', 'cgroup-bin', 'redir']
+    }
+    default: {
+      fail("Sorry, $dist_family is not supported yet")
+    }
+  }
   ensure_packages($packages, {
     'ensure' => 'present'
   })
